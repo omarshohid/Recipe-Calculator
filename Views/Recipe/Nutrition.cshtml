@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row" ng-controller="NutritionController">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <h1>Add New Nutrition</h1>
+            @*<hr />*@
+            <br />
+            <form class="form-horizontal" ng-submit="" name="newNutritionForm" ng-init="LoadNutrition()">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Nutrition Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="nutrition.nutrition_name" name="instrumentName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Unit</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="nutrition.unit" name="instrumentName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Tag Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="nutrition.tag_name" name="instrumentName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" class="btn btn-default" value="Save" data-ng-click="SaveNewNutrition()" />
+                        <input type="button" class="btn btn-default" value="Reset" data-ng-click="Reset()" />
+                        @*<a href="/#InstrumentList" class="btn btn-default">List</a>*@
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h1>Nutritions List</h1>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Item per page</label>
+                    <div class="col-md-2">
+                        <input type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" />
+                    </div>
+                </div>
+            </div>
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" style=" color: white;">
+                <thead style="background-color:#545c65 !important">
+                    <tr>
+                        <th st-sort="nutrition_name">Component Name</th>
+                        <th st-sort="unit">Unit</th>
+                        <th st-sort="tag_name">Tag Name</th>    
+                        <th>Edit</th>                   
+                    </tr>
+                    <tr>
+                        <th colspan="4"><input st-search="" class="form-control input-sm" placeholder="global search ..." type="text" style="width : 200px" /></th>
+                        @*<th><label class="col-md-1 control-label">Item by page</label></th>
+                    <th ><input  type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" /></th>*@
+
+
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in displayedCollection">
+                        <td>{{row.nutrition_name}}</td>
+                        <td>{{row.unit}}</td>
+                        <td>{{row.tag_name}}</td>
+                        <td><a href="/#EditNutrition/{{row.id}}" class="btn btn-link">✍</a></td>
+                        @*<td><a ng-click="DeleteConstantObject(row)" class="btn btn-link">&#@Constant.Delete;</a></td>*@
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="" st-template="~/Scripts/Areas/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div> 
+
+</div>

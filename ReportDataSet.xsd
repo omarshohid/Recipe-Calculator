@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportDataSet" targetNamespace="http://tempuri.org/ReportDataSet.xsd" xmlns:mstns="http://tempuri.org/ReportDataSet.xsd" xmlns="http://tempuri.org/ReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportDataSet" msprop:Generator_UserDSName="ReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NutirionDT" msprop:Generator_TableClassName="NutirionDTDataTable" msprop:Generator_TableVarName="tableNutirionDT" msprop:Generator_TablePropName="NutirionDT" msprop:Generator_RowDeletingName="NutirionDTRowDeleting" msprop:Generator_RowChangingName="NutirionDTRowChanging" msprop:Generator_RowEvHandlerName="NutirionDTRowChangeEventHandler" msprop:Generator_RowDeletedName="NutirionDTRowDeleted" msprop:Generator_UserTableName="NutirionDT" msprop:Generator_RowChangedName="NutirionDTRowChanged" msprop:Generator_RowEvArgName="NutirionDTRowChangeEvent" msprop:Generator_RowClassName="NutirionDTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nutrition" msprop:Generator_ColumnVarNameInTable="columnNutrition" msprop:Generator_ColumnPropNameInRow="Nutrition" msprop:Generator_ColumnPropNameInTable="NutritionColumn" msprop:Generator_UserColumnName="Nutrition" type="xs:string" minOccurs="0" />
+              <xs:element name="NutritionWeight" msprop:Generator_ColumnVarNameInTable="columnNutritionWeight" msprop:Generator_ColumnPropNameInRow="NutritionWeight" msprop:Generator_ColumnPropNameInTable="NutritionWeightColumn" msprop:Generator_UserColumnName="NutritionWeight" type="xs:string" minOccurs="0" />
+              <xs:element name="Unit" msprop:Generator_ColumnVarNameInTable="columnUnit" msprop:Generator_ColumnPropNameInRow="Unit" msprop:Generator_ColumnPropNameInTable="UnitColumn" msprop:Generator_UserColumnName="Unit" type="xs:string" minOccurs="0" />
+              <xs:element name="Group" msprop:Generator_ColumnVarNameInTable="columnGroup" msprop:Generator_ColumnPropNameInRow="Group" msprop:Generator_ColumnPropNameInTable="GroupColumn" msprop:Generator_UserColumnName="Group" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

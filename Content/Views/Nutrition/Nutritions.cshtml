@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row" ng-controller="NutritionController" style="margin:15px;">
+    <div class="col-md-12">
+        <div class="col-md-5">
+            <h1>Add New Nutrient</h1>
+            @*<a href="/#Unit" class="btn btn-default">+Add Unit</a>*@
+                <br />
+                <form class="form-horizontal" ng-submit="" name="newNutritionForm" ng-init="LoadNutrition()">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="Name">Nutrient Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" data-ng-model="nutrition.nutrition_name" name="nutrition_name" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="Name">Unit</label>
+                        </div>
+                        <div class="col-md-8">                           
+                            <select data-ng-model="nutrition.unit" class="dropdown form-control input-sm"
+                                    ng-options="unit.unit_name as unit.unit_name for unit in UnitList" required>
+                                <option value="">---------------Select---------------</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label for="Name">Tag Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm" data-ng-model="nutrition.tag_name" name="tag_name" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9 text-center">
+                            <input type="submit" class="btn btn-default" value="Save" data-ng-click="SaveNewNutrition()" />
+                            <input type="button" class="btn btn-default" value="Reset" data-ng-click="Reset()" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <div class="col-md-7">
+            <h1>Nutrient List</h1>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Item per page</label>
+                    <div class="col-md-2">
+                        <input type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" />
+                    </div>
+                </div>
+            </div>
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" style="">
+                <thead style="background-color:#545c65 !important">
+                    <tr style="color:white;">
+                        <th st-sort="nutrition_name">Component Name</th>
+                        <th st-sort="unit">Unit</th>
+                        <th st-sort="tag_name">Tag Name</th>    
+                        <th>Edit</th>
+                        @*<th>Delete</th>*@                   
+                    </tr>
+                    <tr>
+                        <th colspan="4"><input st-search="" class="form-control input-sm" placeholder="global search ..." type="text" style="width : 200px" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in displayedCollection">
+                        <td>{{row.nutrition_name}}</td>
+                        <td>{{row.unit}}</td>
+                        <td>{{row.tag_name}}</td>
+                        <td><a href="/#EditNutrition/{{row.id}}" class="btn btn-link">&#@RecipeCalculator.Utility.Constant.Edit;</a></td>
+                        @*<td><a ng-click="DeleteNutrition(row)" class="btn btn-link">&#@RecipeCalculator.Utility.Constant.Delete</a></td>*@
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="" st-template="~/Scripts/Areas/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div> 
+</div>

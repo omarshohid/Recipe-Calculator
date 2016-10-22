@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecipeCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RecipeCalculatorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetUsers" EntityType="RecipeCalculatorModel.AspNetUser" />
+    <EntitySet Name="tblIngredients" EntityType="RecipeCalculatorModel.tblIngredient" />
+    <EntitySet Name="tblNutritions" EntityType="RecipeCalculatorModel.tblNutrition" />
+    <EntitySet Name="tblRecipeUsers" EntityType="RecipeCalculatorModel.tblRecipeUser" />
+    <EntitySet Name="tblStandardRecipes" EntityType="RecipeCalculatorModel.tblStandardRecipe" />
+    <EntitySet Name="C__MigrationHistory" EntityType="RecipeCalculatorModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="RecipeCalculatorModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="RecipeCalculatorModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="RecipeCalculatorModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUserRoles" EntityType="RecipeCalculatorModel.AspNetUserRole" />
+    <AssociationSet Name="FK_tblRecipeUser_AspNetUsers" Association="RecipeCalculatorModel.FK_tblRecipeUser_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="tblRecipeUser" EntitySet="tblRecipeUsers" />
+    </AssociationSet>
+    <EntitySet Name="tblUnits" EntityType="RecipeCalculatorModel.tblUnit" />
+    <EntitySet Name="tblStandardRecipeIngredients" EntityType="RecipeCalculatorModel.tblStandardRecipeIngredient" />
+    <AssociationSet Name="FK_tblStandardRecipeIngredients_tblIngredients" Association="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblIngredients">
+      <End Role="tblIngredient" EntitySet="tblIngredients" />
+      <End Role="tblStandardRecipeIngredient" EntitySet="tblStandardRecipeIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStandardRecipeIngredients_tblStandardRecipe" Association="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblStandardRecipe">
+      <End Role="tblStandardRecipe" EntitySet="tblStandardRecipes" />
+      <End Role="tblStandardRecipeIngredient" EntitySet="tblStandardRecipeIngredients" />
+    </AssociationSet>
+    <EntitySet Name="tblIngredientNutritions" EntityType="RecipeCalculatorModel.tblIngredientNutrition" />
+    <AssociationSet Name="FK_tblIngredientNutritions_tblIngredients" Association="RecipeCalculatorModel.FK_tblIngredientNutritions_tblIngredients">
+      <End Role="tblIngredient" EntitySet="tblIngredients" />
+      <End Role="tblIngredientNutrition" EntitySet="tblIngredientNutritions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblIngredientNutritions_tblNutritions" Association="RecipeCalculatorModel.FK_tblIngredientNutritions_tblNutritions">
+      <End Role="tblNutrition" EntitySet="tblNutritions" />
+      <End Role="tblIngredientNutrition" EntitySet="tblIngredientNutritions" />
+    </AssociationSet>
+    <EntitySet Name="tblYieldFactors" EntityType="RecipeCalculatorModel.tblYieldFactor" />
+  </EntityContainer>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblRecipeUser" Relationship="RecipeCalculatorModel.FK_tblRecipeUser_AspNetUsers" FromRole="AspNetUser" ToRole="tblRecipeUser" />
+  </EntityType>
+  <EntityType Name="tblIngredient">
+    <Key>
+      <PropertyRef Name="ingredient_id" />
+    </Key>
+    <Property Name="ingredient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ingredient_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="preparation_type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblStandardRecipeIngredients" Relationship="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblIngredients" FromRole="tblIngredient" ToRole="tblStandardRecipeIngredient" />
+    <NavigationProperty Name="tblIngredientNutritions" Relationship="RecipeCalculatorModel.FK_tblIngredientNutritions_tblIngredients" FromRole="tblIngredient" ToRole="tblIngredientNutrition" />
+    <Property Name="FoodCoodeWithGroupid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FoodnameinBengali" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ScientificName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblNutrition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nutrition_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="tag_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblIngredientNutritions" Relationship="RecipeCalculatorModel.FK_tblIngredientNutritions_tblNutritions" FromRole="tblNutrition" ToRole="tblIngredientNutrition" />
+  </EntityType>
+  <EntityType Name="tblRecipeUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="is_admin" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+    <Property Name="is_loggedIn" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="last_logged_time" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="approve_date" Type="Decimal" Precision="9" Scale="0" />
+    <NavigationProperty Name="AspNetUser" Relationship="RecipeCalculatorModel.FK_tblRecipeUser_AspNetUsers" FromRole="tblRecipeUser" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="tblStandardRecipe">
+    <Key>
+      <PropertyRef Name="standard_recipe_id" />
+    </Key>
+    <Property Name="standard_recipe_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="standard_recipe_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="preparation_type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="yield_factor" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+    <NavigationProperty Name="tblStandardRecipeIngredients" Relationship="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblStandardRecipe" FromRole="tblStandardRecipe" ToRole="tblStandardRecipeIngredient" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+      <PropertyRef Name="Model" />
+      <PropertyRef Name="ProductVersion" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tblRecipeUser_AspNetUsers">
+    <End Type="RecipeCalculatorModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="RecipeCalculatorModel.tblRecipeUser" Role="tblRecipeUser" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblRecipeUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblUnit">
+    <Key>
+      <PropertyRef Name="unit_id" />
+    </Key>
+    <Property Name="unit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="unit_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblStandardRecipeIngredient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="standard_recipe_id" Type="Int32" Nullable="false" />
+    <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+    <Property Name="weight" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="unit_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblIngredient" Relationship="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblIngredients" FromRole="tblStandardRecipeIngredient" ToRole="tblIngredient" />
+    <NavigationProperty Name="tblStandardRecipe" Relationship="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblStandardRecipe" FromRole="tblStandardRecipeIngredient" ToRole="tblStandardRecipe" />
+  </EntityType>
+  <Association Name="FK_tblStandardRecipeIngredients_tblIngredients">
+    <End Type="RecipeCalculatorModel.tblIngredient" Role="tblIngredient" Multiplicity="1" />
+    <End Type="RecipeCalculatorModel.tblStandardRecipeIngredient" Role="tblStandardRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblIngredient">
+        <PropertyRef Name="ingredient_id" />
+      </Principal>
+      <Dependent Role="tblStandardRecipeIngredient">
+        <PropertyRef Name="ingredient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStandardRecipeIngredients_tblStandardRecipe">
+    <End Type="RecipeCalculatorModel.tblStandardRecipe" Role="tblStandardRecipe" Multiplicity="1" />
+    <End Type="RecipeCalculatorModel.tblStandardRecipeIngredient" Role="tblStandardRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStandardRecipe">
+        <PropertyRef Name="standard_recipe_id" />
+      </Principal>
+      <Dependent Role="tblStandardRecipeIngredient">
+        <PropertyRef Name="standard_recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblIngredientNutrition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+    <Property Name="nutrition_id" Type="Int32" Nullable="false" />
+    <Property Name="retention_factor" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="nutrition_weight" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+    <NavigationProperty Name="tblIngredient" Relationship="RecipeCalculatorModel.FK_tblIngredientNutritions_tblIngredients" FromRole="tblIngredientNutrition" ToRole="tblIngredient" />
+    <NavigationProperty Name="tblNutrition" Relationship="RecipeCalculatorModel.FK_tblIngredientNutritions_tblNutritions" FromRole="tblIngredientNutrition" ToRole="tblNutrition" />
+    <Property Name="OwnRForGroup" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_tblIngredientNutritions_tblIngredients">
+    <End Type="RecipeCalculatorModel.tblIngredient" Role="tblIngredient" Multiplicity="1" />
+    <End Type="RecipeCalculatorModel.tblIngredientNutrition" Role="tblIngredientNutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblIngredient">
+        <PropertyRef Name="ingredient_id" />
+      </Principal>
+      <Dependent Role="tblIngredientNutrition">
+        <PropertyRef Name="ingredient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblIngredientNutritions_tblNutritions">
+    <End Type="RecipeCalculatorModel.tblNutrition" Role="tblNutrition" Multiplicity="1" />
+    <End Type="RecipeCalculatorModel.tblIngredientNutrition" Role="tblIngredientNutrition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblNutrition">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblIngredientNutrition">
+        <PropertyRef Name="nutrition_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblYieldFactor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ingredient_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Yield_factor" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="own_YF_or_group" Type="Boolean" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0de2384029b64e94bdaa87915386d26a" Name="Diagram1">
+        <EntityTypeShape EntityType="RecipeCalculatorModel.AspNetUser" Width="1.5" PointX="7.5" PointY="2.625" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblIngredient" Width="1.5" PointX="2.5" PointY="4" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblNutrition" Width="1.5" PointX="2.5" PointY="1.25" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblRecipeUser" Width="1.5" PointX="9.75" PointY="3.125" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblStandardRecipe" Width="1.5" PointX="2.5" PointY="7.375" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.C__MigrationHistory" Width="1.5" PointX="4.5" PointY="7.375" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.AspNetRole" Width="1.5" PointX="6.5" PointY="7.375" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.AspNetUserClaim" Width="1.5" PointX="8.5" PointY="7.375" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.AspNetUserLogin" Width="1.5" PointX="4.5" PointY="10.375" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.AspNetUserRole" Width="1.5" PointX="10.5" PointY="6.375" />
+        <AssociationConnector Association="RecipeCalculatorModel.FK_tblRecipeUser_AspNetUsers" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblUnit" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblStandardRecipeIngredient" Width="1.5" PointX="4.75" PointY="0.75" />
+        <AssociationConnector Association="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblIngredients" />
+        <AssociationConnector Association="RecipeCalculatorModel.FK_tblStandardRecipeIngredients_tblStandardRecipe" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblIngredientNutrition" Width="1.5" PointX="7.75" PointY="0.75" />
+        <AssociationConnector Association="RecipeCalculatorModel.FK_tblIngredientNutritions_tblIngredients" />
+        <AssociationConnector Association="RecipeCalculatorModel.FK_tblIngredientNutritions_tblNutritions" />
+        <EntityTypeShape EntityType="RecipeCalculatorModel.tblYieldFactor" Width="1.5" PointX="0.75" PointY="10.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

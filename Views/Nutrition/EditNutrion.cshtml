@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row" ng-controller="NutritionController">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <h1>Edit Nutrition</h1>
+            @*<hr />*@
+            <br />
+            <form class="form-horizontal" ng-submit="" name="EditNutritionForm" ng-init="LoadNutritionById()">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Nutrition Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="editNutrition.nutrition_name" name="instrumentName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Unit</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="editNutrition.unit" name="instrumentName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Tag Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="editNutrition.tag_name" name="instrumentName" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" class="btn btn-default" value="Update" data-ng-click="UpdateNutrition()" />
+                        <input type="button" class="btn btn-default" value="Reset" data-ng-click="ResetNutrition()" />
+                        @*<input type="button" class="btn btn-default" value="List" data-ng-click="ResetNutrition()" />*@
+                        <a href="/#Nutritions" class="btn btn-default">List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

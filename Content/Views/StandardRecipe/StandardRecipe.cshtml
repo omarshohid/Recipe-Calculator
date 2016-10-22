@@ -1,0 +1,120 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row" ng-controller="StandardRecipeController" ng-init="LoadAllDropDown()" style="margin:15px;">
+
+    <div class="col-md-6">
+        <h1>Standard Recipe</h1>
+        <form class="form-horizontal" ng-submit="" name="standardRecipeForm" ng-init="">
+            <div class="form-group" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-2">Recipe</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control input-sm" ng-model="standardRecipe.standard_recipe_name" placeholder="Enter Recipe name" />
+                </div>
+                <div class="col-md-1">
+                    <input type="button" class="btn btn-primary" style="margin-left:-25px;" value="Add" data-ng-click="addNewChoice()" />
+                </div>
+            </div>
+            <div class="form-group" data-ng-repeat="choice in choices" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-2">Ingredient</label>
+                <div class="col-md-4">
+                    <ui-select ng-model="choice.ingredient_id" title="Choose Ingredient" ng-change="isUsed($index)" append-to-body="true">
+                        <ui-select-match placeholder="Select ingredient"> {{$select.selected.ingredient_name}} </ui-select-match>
+                        <ui-select-choices repeat="ingredient.ingredient_id as ingredient in IngredientList | filter:{ ingredient_name: $select.search }">
+                            <span style="height:30px;" ng-bind-html="ingredient.ingredient_name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-2" style="margin-left:-22px">
+                    <input type="text" class="input-sm btnde ng-pristine ng-invalid ng-invalid-required ng-touched" data-ng-model="choice.weights" placeholder="Enter Weight..." name="wdight" ng-change="loadIngredients()" required="" style="height: 34px; width:129px;">
+                </div>
+                <div class="col-md-3" style="margin-left:28px">
+                    <select data-ng-model="choice.unit" class="dropdown form-control input-sm"
+                            ng-options="unit.unit_name as unit.unit_name for unit in UnitList" ng-change="loadIngredients()" required style="height: 34px;">
+                        <option value="">----Select----</option>
+                    </select>
+                </div>
+
+                <div class="col-md-1">
+                    <input type="button" id="remove" class="btn btn-danger" @*class="btn btn-danger"*@ style="margin-left:-25px;" @*ng-show="$last"*@ value="Del" data-ng-click="removeChoice($index)" />
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-6 col-md-4">
+                        <input type="button" class="btn btn-primary" ng-show="$last" value="Save Recipe" style="margin-top: 10px" data-ng-click="SaveStandardRecipe()" />
+                    </div>
+                </div>
+
+                @*<button class="remove" style="color:red" ng-show="$last" ng-click="removeChoice()"</button>*@
+            </div>
+        </form>
+        @*</div>*@
+    </div>
+    <div class=" col-md-6">
+        <h1>&nbsp;</h1>
+        <form class="form-horizontal" ng-submit="" name="yieldFactorForm" ng-init="">
+            <div class="form-group" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-3 control-label">Yield Factor</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control input-sm"  ng-model="standardRecipe.yield_factor" placeholder="Enter yield factor" required />
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary" @*style="margin-left:-25px; height:30px"*@ value="Clear" data-ng-click="" />
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary" @*style="margin-left:-25px; height:30px"*@ value="Result" data-ng-click="" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12" style="overflow-x:scroll">
+        @*<h1>Standard Recipe</h1>*@
+        <div class="row">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Item per page</label>
+                <div class="col-md-2">
+                    <input type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" />
+                </div>
+            </div>
+        </div>
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" style="">
+            <thead style="background-color:#545c65 !important">
+                <tr style="color:white;">
+                    <th st-sort="ingredient_name">Ingredient Name</th>
+                    <th st-sort="preparation_type">Preparation Type</th>
+                    <th st-sort="weight">Weight</th>
+                    <th st-sort="{{col.nutrition_name}}" ng-repeat="col in collCollection">{{col.nutrition_name+' ('+col.unit+')'}}</th>
+                </tr>
+                <tr>
+                    <th colspan="{{span}}"><input st-search="" class="form-control input-sm" placeholder="global search ..." type="text" style="width : 200px" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.ingredient_name}}  </td>
+                    <td>{{row.preparation_type}}  </td>
+                    <td>{{row.weight+' ('+row.unit+')'}}  </td>
+                    <td ng-repeat="col in collCollection">
+                        {{row[col.nutrition_name]}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr ng-repeat=" item in Total">
+                    <td colspan="2">Total Weight</td>
+                    <td>{{item.total_weight}} {{item.unit}}</td>
+                    <td ng-repeat="col in collCollection">
+                        {{item[col.nutrition_name]}} {{item[col.nutrition_name+'_unit']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="{{span}}" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="" st-template="~/Scripts/Areas/pagination.custom.html"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>

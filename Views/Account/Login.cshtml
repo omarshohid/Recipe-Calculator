@@ -1,0 +1,80 @@
+﻿@using RecipeCalculator.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="row">
+    @*<div class="modal fade kd-loginbox" id="registerModalbox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">*@
+    <div class="modal-dialog kd-loginbox" id="Modalbox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        @*<div class="modal-content" style="margin-top: 90px;height: 350px; width: 480px;">*@
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 90px;height: 350px; width: 450px;">
+                <div class="modal-body">
+                    <section id="loginForm">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+                                <a href="#/Index" class="close" data-dismiss="modal" style="margin-left: 30px" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+                                <div class="kd-login-title">
+                                    <h2>Login TO</h2>
+                                    <span>Your Account</span>
+                                </div>
+                                <form>
+                                    <p>
+                                        <i class="fa fa-envelope-o"></i>
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-lock"></i>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </p>
+                                    <p>
+                                        <input type="submit" value="LOGIN NOW" class="thbg-color">
+                                    </p>
+                                </form>
+                            </div>
+
+
+
+                            @*<div class="modal-header">
+                            <a href="/#Index" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>
+                            <h1 class="text-center" style="color:white">Login</h1>
+                            <div class="toast-error" style="color:#fff; text-align:center">@TempData["errorMessage"]</div>
+                        </div>
+                        <div class="modal-body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+
+                                <div class="form col-md-12 center-block">
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form col-md-12 center-block">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>*@
+                        }
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

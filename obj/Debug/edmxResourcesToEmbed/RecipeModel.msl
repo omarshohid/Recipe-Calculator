@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RecipeCalculatorModelStoreContainer" CdmEntityContainer="RecipeCalculatorEntities">
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblIngredients">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblIngredient">
+        <MappingFragment StoreEntitySet="tblIngredients">
+          <ScalarProperty Name="ScientificName" ColumnName="ScientificName" />
+          <ScalarProperty Name="FoodnameinBengali" ColumnName="FoodnameinBengali" />
+          <ScalarProperty Name="FoodCoodeWithGroupid" ColumnName="FoodCoodeWithGroupid" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="preparation_type" ColumnName="preparation_type" />
+          <ScalarProperty Name="ingredient_name" ColumnName="ingredient_name" />
+          <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNutritions">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblNutrition">
+        <MappingFragment StoreEntitySet="tblNutritions">
+          <ScalarProperty Name="tag_name" ColumnName="tag_name" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="nutrition_name" ColumnName="nutrition_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRecipeUsers">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblRecipeUser">
+        <MappingFragment StoreEntitySet="tblRecipeUser">
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="approve_by" ColumnName="approve_by" />
+          <ScalarProperty Name="last_logged_time" ColumnName="last_logged_time" />
+          <ScalarProperty Name="is_loggedIn" ColumnName="is_loggedIn" />
+          <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStandardRecipes">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblStandardRecipe">
+        <MappingFragment StoreEntitySet="tblStandardRecipe">
+          <ScalarProperty Name="yield_factor" ColumnName="yield_factor" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="preparation_type" ColumnName="preparation_type" />
+          <ScalarProperty Name="standard_recipe_name" ColumnName="standard_recipe_name" />
+          <ScalarProperty Name="standard_recipe_id" ColumnName="standard_recipe_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserRoles">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.AspNetUserRole">
+        <MappingFragment StoreEntitySet="AspNetUserRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUnits">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblUnit">
+        <MappingFragment StoreEntitySet="tblUnits">
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStandardRecipeIngredients">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblStandardRecipeIngredient">
+        <MappingFragment StoreEntitySet="tblStandardRecipeIngredients">
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+          <ScalarProperty Name="standard_recipe_id" ColumnName="standard_recipe_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblIngredientNutritions">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblIngredientNutrition">
+        <MappingFragment StoreEntitySet="tblIngredientNutritions">
+          <ScalarProperty Name="OwnRForGroup" ColumnName="OwnRForGroup" />
+          <ScalarProperty Name="nutrition_weight" ColumnName="nutrition_weight" />
+          <ScalarProperty Name="retention_factor" ColumnName="retention_factor" />
+          <ScalarProperty Name="nutrition_id" ColumnName="nutrition_id" />
+          <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblYieldFactors">
+      <EntityTypeMapping TypeName="RecipeCalculatorModel.tblYieldFactor">
+        <MappingFragment StoreEntitySet="tblYieldFactors">
+          <ScalarProperty Name="own_YF_or_group" ColumnName="own_YF_or_group" />
+          <ScalarProperty Name="Yield_factor" ColumnName="Yield_factor" />
+          <ScalarProperty Name="Ingredient_name" ColumnName="Ingredient_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

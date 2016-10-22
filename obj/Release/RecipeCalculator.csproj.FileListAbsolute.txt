@@ -1,0 +1,48 @@
+E:\Recipe\RecipeCalculator\bin\RecipeCalculator.dll.config
+E:\Recipe\RecipeCalculator\bin\RecipeCalculator.dll
+E:\Recipe\RecipeCalculator\bin\RecipeCalculator.pdb
+E:\Recipe\RecipeCalculator\bin\Microsoft.Web.Infrastructure.dll
+E:\Recipe\RecipeCalculator\bin\Newtonsoft.Json.dll
+E:\Recipe\RecipeCalculator\bin\Microsoft.Web.Infrastructure.xml
+E:\Recipe\RecipeCalculator\obj\Release\RecipeCalculator.csprojResolveAssemblyReference.cache
+E:\Recipe\RecipeCalculator\obj\Release\RecipeCalculator.dll
+E:\Recipe\RecipeCalculator\obj\Release\RecipeCalculator.pdb
+E:\Recipe\RecipeCalculator\bin\Google.Apis.Core.dll
+E:\Recipe\RecipeCalculator\bin\Google.Apis.dll
+E:\Recipe\RecipeCalculator\bin\Google.Apis.PlatformServices.dll
+E:\Recipe\RecipeCalculator\bin\log4net.dll
+E:\Recipe\RecipeCalculator\bin\Zlib.Portable.dll
+E:\Recipe\RecipeCalculator\bin\Google.Apis.pdb
+E:\Recipe\RecipeCalculator\bin\Google.Apis.xml
+E:\Recipe\RecipeCalculator\bin\Google.Apis.Core.pdb
+E:\Recipe\RecipeCalculator\bin\Google.Apis.Core.xml
+E:\Recipe\RecipeCalculator\bin\Google.Apis.PlatformServices.pdb
+E:\Recipe\RecipeCalculator\bin\Google.Apis.PlatformServices.xml
+E:\Recipe\RecipeCalculator\bin\log4net.xml
+E:\Recipe\RecipeCalculator\bin\Newtonsoft.Json.xml
+E:\Recipe\RecipeCalculator\bin\Zlib.Portable.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\RecipeCalculator.dll.config
+D:\SHARE SHOHID\RecipeCalculator\bin\RecipeCalculator.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\RecipeCalculator.pdb
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.Core.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.PlatformServices.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\log4net.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\Microsoft.Web.Infrastructure.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\Newtonsoft.Json.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\Zlib.Portable.dll
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.pdb
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.Core.pdb
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.Core.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.PlatformServices.pdb
+D:\SHARE SHOHID\RecipeCalculator\bin\Google.Apis.PlatformServices.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\log4net.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\Newtonsoft.Json.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\Microsoft.Web.Infrastructure.xml
+D:\SHARE SHOHID\RecipeCalculator\bin\Zlib.Portable.xml
+D:\SHARE SHOHID\RecipeCalculator\obj\Release\RecipeCalculator.csprojResolveAssemblyReference.cache
+D:\SHARE SHOHID\RecipeCalculator\obj\Release\RecipeCalculator.dll
+D:\SHARE SHOHID\RecipeCalculator\obj\Release\RecipeCalculator.pdb
+E:\Recipe\RecipeCalculator\obj\Release\RdlCompile.cache
+E:\Recipe\RecipeCalculator\obj\Release\RdlCompile.compiled

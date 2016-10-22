@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecipeCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RecipeCalculator.dbo.__MigrationHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+      <PropertyRef Name="Model" />
+      <PropertyRef Name="ProductVersion" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RecipeCalculator.dbo.AspNetRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RecipeCalculator.dbo.AspNetUserClaims' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RecipeCalculator.dbo.AspNetUserLogins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RecipeCalculator.dbo.AspNetUserRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblIngredientNutritions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ingredient_id" Type="int" Nullable="false" />
+    <Property Name="nutrition_id" Type="int" Nullable="false" />
+    <Property Name="retention_factor" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+    <Property Name="nutrition_weight" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+    <Property Name="OwnRForGroup" Type="int" />
+  </EntityType>
+  <EntityType Name="tblIngredients">
+    <Key>
+      <PropertyRef Name="ingredient_id" />
+    </Key>
+    <Property Name="ingredient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodCoodeWithGroupid" Type="nvarchar" MaxLength="50" />
+    <Property Name="ingredient_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="FoodnameinBengali" Type="nvarchar" MaxLength="150" />
+    <Property Name="ScientificName" Type="nvarchar" MaxLength="150" />
+    <Property Name="preparation_type" Type="nvarchar" MaxLength="30" />
+    <Property Name="weight" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="unit" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblNutritions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nutrition_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tag_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblRecipeUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="is_admin" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="is_loggedIn" Type="numeric" Precision="1" Scale="0" />
+    <Property Name="last_logged_time" Type="datetime" />
+    <Property Name="approve_by" Type="varchar" MaxLength="128" />
+    <Property Name="approve_date" Type="numeric" Precision="9" Scale="0" />
+  </EntityType>
+  <EntityType Name="tblStandardRecipe">
+    <Key>
+      <PropertyRef Name="standard_recipe_id" />
+    </Key>
+    <Property Name="standard_recipe_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="standard_recipe_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="preparation_type" Type="nvarchar" MaxLength="30" />
+    <Property Name="weight" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="yield_factor" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblStandardRecipeIngredients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="standard_recipe_id" Type="int" Nullable="false" />
+    <Property Name="ingredient_id" Type="int" Nullable="false" />
+    <Property Name="weight" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+    <Property Name="unit_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUnits">
+    <Key>
+      <PropertyRef Name="unit_id" />
+    </Key>
+    <Property Name="unit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="unit_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblYieldFactors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ingredient_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Yield_factor" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="own_YF_or_group" Type="bit" />
+  </EntityType>
+  <Association Name="FK_tblIngredientNutritions_tblIngredients">
+    <End Role="tblIngredients" Type="Self.tblIngredients" Multiplicity="1" />
+    <End Role="tblIngredientNutritions" Type="Self.tblIngredientNutritions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblIngredients">
+        <PropertyRef Name="ingredient_id" />
+      </Principal>
+      <Dependent Role="tblIngredientNutritions">
+        <PropertyRef Name="ingredient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblIngredientNutritions_tblNutritions">
+    <End Role="tblNutritions" Type="Self.tblNutritions" Multiplicity="1" />
+    <End Role="tblIngredientNutritions" Type="Self.tblIngredientNutritions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblNutritions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblIngredientNutritions">
+        <PropertyRef Name="nutrition_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRecipeUser_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="tblRecipeUser" Type="Self.tblRecipeUser" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblRecipeUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStandardRecipeIngredients_tblIngredients">
+    <End Role="tblIngredients" Type="Self.tblIngredients" Multiplicity="1" />
+    <End Role="tblStandardRecipeIngredients" Type="Self.tblStandardRecipeIngredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblIngredients">
+        <PropertyRef Name="ingredient_id" />
+      </Principal>
+      <Dependent Role="tblStandardRecipeIngredients">
+        <PropertyRef Name="ingredient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStandardRecipeIngredients_tblStandardRecipe">
+    <End Role="tblStandardRecipe" Type="Self.tblStandardRecipe" Multiplicity="1" />
+    <End Role="tblStandardRecipeIngredients" Type="Self.tblStandardRecipeIngredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStandardRecipe">
+        <PropertyRef Name="standard_recipe_id" />
+      </Principal>
+      <Dependent Role="tblStandardRecipeIngredients">
+        <PropertyRef Name="standard_recipe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RecipeCalculatorModelStoreContainer">
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblIngredientNutritions" EntityType="Self.tblIngredientNutritions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblIngredients" EntityType="Self.tblIngredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblNutritions" EntityType="Self.tblNutritions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRecipeUser" EntityType="Self.tblRecipeUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStandardRecipe" EntityType="Self.tblStandardRecipe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStandardRecipeIngredients" EntityType="Self.tblStandardRecipeIngredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUnits" EntityType="Self.tblUnits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblYieldFactors" EntityType="Self.tblYieldFactors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [__MigrationHistory].[MigrationId] AS [MigrationId], 
+    [__MigrationHistory].[ContextKey] AS [ContextKey], 
+    [__MigrationHistory].[Model] AS [Model], 
+    [__MigrationHistory].[ProductVersion] AS [ProductVersion]
+    FROM [dbo].[__MigrationHistory] AS [__MigrationHistory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AspNetRoles].[Id] AS [Id], 
+    [AspNetRoles].[Name] AS [Name]
+    FROM [dbo].[AspNetRoles] AS [AspNetRoles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AspNetUserClaims].[Id] AS [Id], 
+    [AspNetUserClaims].[UserId] AS [UserId], 
+    [AspNetUserClaims].[ClaimType] AS [ClaimType], 
+    [AspNetUserClaims].[ClaimValue] AS [ClaimValue]
+    FROM [dbo].[AspNetUserClaims] AS [AspNetUserClaims]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AspNetUserLogins].[LoginProvider] AS [LoginProvider], 
+    [AspNetUserLogins].[ProviderKey] AS [ProviderKey], 
+    [AspNetUserLogins].[UserId] AS [UserId]
+    FROM [dbo].[AspNetUserLogins] AS [AspNetUserLogins]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AspNetUserRoles].[UserId] AS [UserId], 
+    [AspNetUserRoles].[RoleId] AS [RoleId]
+    FROM [dbo].[AspNetUserRoles] AS [AspNetUserRoles]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tblIngredientNutritions_tblIngredients" Association="Self.FK_tblIngredientNutritions_tblIngredients">
+      <End Role="tblIngredients" EntitySet="tblIngredients" />
+      <End Role="tblIngredientNutritions" EntitySet="tblIngredientNutritions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblIngredientNutritions_tblNutritions" Association="Self.FK_tblIngredientNutritions_tblNutritions">
+      <End Role="tblNutritions" EntitySet="tblNutritions" />
+      <End Role="tblIngredientNutritions" EntitySet="tblIngredientNutritions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRecipeUser_AspNetUsers" Association="Self.FK_tblRecipeUser_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="tblRecipeUser" EntitySet="tblRecipeUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStandardRecipeIngredients_tblIngredients" Association="Self.FK_tblStandardRecipeIngredients_tblIngredients">
+      <End Role="tblIngredients" EntitySet="tblIngredients" />
+      <End Role="tblStandardRecipeIngredients" EntitySet="tblStandardRecipeIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStandardRecipeIngredients_tblStandardRecipe" Association="Self.FK_tblStandardRecipeIngredients_tblStandardRecipe">
+      <End Role="tblStandardRecipe" EntitySet="tblStandardRecipe" />
+      <End Role="tblStandardRecipeIngredients" EntitySet="tblStandardRecipeIngredients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

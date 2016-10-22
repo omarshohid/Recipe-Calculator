@@ -1,0 +1,178 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+#myChart {
+  height:100%;
+  width:100%;
+}
+</style>
+<div class="row" ng-controller="CalculatorController" ng-init="LoadAllDropDown()"style="margin:15px;">
+
+    <div class="col-md-7" style="margin-top: 10px;">
+       
+        <form class="form-horizontal" ng-submit="" name="calculateRecipeForm" ng-init="">
+            <div class="form-group" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-2">Recipe</label>
+                <div class="col-md-9">
+                    <ui-select ng-model="calculate.standard_recipe_id" title="Choose Ingredient" ng-change="GetStandardRecipeById(calculate.standard_recipe_id)" append-to-body="true" required>
+                        <ui-select-match placeholder="Select standard recipe"> {{$select.selected.standard_recipe_name}} </ui-select-match>
+                        <ui-select-choices repeat="stdrecipe.standard_recipe_id as stdrecipe in StdRecipeList | filter:{ standard_recipe_name: $select.search }">
+                            <span ng-bind-html="stdrecipe.standard_recipe_name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-1">
+                    <input type="button" class="btn btn-primary" style="margin-left:-25px;" value="Add" data-ng-click="addNewChoice()" />
+                </div>
+            </div>
+            <div class="form-group" data-ng-repeat="choice in choices" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-2">Ingredient</label>
+                <div class="col-md-4" >
+                    <ui-select ng-model="choice.ingredient_id" title="Choose Ingredient" ng-change="isUsed($index)"append-to-body="true" style="margin-right:-60px;">
+                        <ui-select-match placeholder="Select ingredient"> {{$select.selected.ingredient_name}} </ui-select-match>
+                        <ui-select-choices repeat="ingredient.ingredient_id as ingredient in IngredientList | filter:{ ingredient_name: $select.search }">
+                            <span style="height:30px;" ng-bind-html="ingredient.ingredient_name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-md-2" style="margin-left:-22px">
+                    @*<input type="text" class="input-sm btnde" data-ng-model="choice.weights" placeholder="Enter Weight..." name="wdight" ng-change="loadIngredients()" required />*@
+                    <input type="text" class="input-sm btnde ng-pristine ng-invalid ng-invalid-required ng-touched" data-ng-model="choice.weights" placeholder="Enter Weight..." name="wdight" ng-change="loadIngredients()" required="" style="height: 34px; width:129px; margin-left:58px;">
+                </div>
+                <div class="col-md-3" style="margin-left:28px">
+                    <select data-ng-model="choice.unit" class="dropdown form-control input-sm"
+                            ng-options="unit.unit_name as unit.unit_name for unit in UnitList" ng-change="loadIngredients()" required style="height: 34px; width:110px; margin-left:42px;">
+                        <option value="">----Select----</option>
+                    </select>
+                </div>
+
+                <div class="col-md-1">
+                    <input type="button" id="remove" class="btn btn-danger" @*class="btn btn-danger"*@ style="margin-left:-25px;" @*ng-show="$last"*@ value="Del" data-ng-click="removeChoice($index)" />
+                </div>
+            </div>
+        </form>
+        @*</div>*@
+    </div>
+    <div class="col-md-5" style="margin-top: 10px;">
+        @*<h1>&nbsp;</h1>*@
+        <form class="form-horizontal" ng-submit="" name="yieldFactorForm" ng-init="">
+            <div class="form-group" style="margin-left:0px; margin-right:0px">
+                <div class="col-md-8" style="margin-left:40px">
+                    <div class="col-md-1">
+                        <input type="checkbox" name="ownYieldFactor" value="Yield Factor" checked="checked" style="margin-left : 0px" data-ng-model="standardRecipe.yield_factor_checked" enter-as-tab />
+                    </div>
+                    <div class="col-md-10">
+                        <label for="Yield Factor">&nbsp;Do you want to select yield factor..?</label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div ng-show="standardRecipe.yield_factor_checked">
+                        <div class="col-md-3">
+                            <label class=" control-label">Yield Factor</label>
+                        </div>
+                        <ui-select class="col-md-6" ng-model="standardRecipe.yield_factor" @*ng-if="standardRecipe.yield_factor_checked == true"*@ title="Select yield factor" ng-change="isUsed($index)" append-to-body="true">
+                            <ui-select-match placeholder="Select yield factor"> {{$select.selected.Ingredient_name}} </ui-select-match>
+                            <ui-select-choices repeat="yieldfactor.Yield_factor as yieldfactor in YieldfactorList | filter:{ Ingredient_name: $select.search }">
+                                <span ng-bind-html="yieldfactor.Ingredient_name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div ng-hide="standardRecipe.yield_factor_checked">
+                        <label class="col-md-3 control-label">Yield Factor</label>
+                        <input type="text" class="input-sm col-md-6" ng-model="standardRecipe.yield_factor" ng-change="isUsed($index)" placeholder="Enter yield factor" @*ng-if="standardRecipe.yield_factor_checked == false"*@ required />
+                    </div>
+                </div>
+
+                <div style="margin-top:110px; margin-left:60px ">
+                    <span class="label label-warning" style="font-family:' Georgia'; font-size:18px">Please select or enter Yield factor to see Weight with yield factor</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-12" style="overflow-x:scroll">
+        @*<h1>Standard Recipe</h1>*@
+        @*<div class="row">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Item per page</label>
+                <div class="col-md-2">
+                    <input type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" />
+                </div>
+            </div>
+        </div>*@
+        <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+            <thead style="background-color:#545c65 !important">
+                <tr style="color:white;">
+                    <th st-sort="ingredient_name">Ingredient Name</th>
+                    <th st-sort="preparation_type">Preparation Type</th>
+                    <th st-sort="weight">Weight</th>
+                    <th st-sort="{{col.nutrition_name}}" ng-repeat="col in collCollection">{{col.nutrition_name+' ('+col.unit+')'}}</th>
+                </tr>
+                <tr>
+                    <th colspan="{{span}}"><input st-search="" class="form-control input-sm" placeholder="global search ..." type="text" style="width : 200px" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.ingredient_name}}  </td>
+                    <td>{{row.preparation_type}}  </td>
+                    <td>{{row.weight+' ('+row.unit+')'}}  </td>
+                    <td ng-repeat="col in collCollection">
+                        {{row[col.nutrition_name]}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr ng-repeat=" item in Total">
+                    <td colspan="2">Total Weight</td>
+                    <td>{{item.total_weight}} {{item.unit}}</td>
+                    <td ng-repeat="col in collCollection">
+                        {{item[col.nutrition_name]}} {{item[col.nutrition_name+'_unit']}}
+                    </td>
+                </tr>
+
+                <tr ng-repeat=" item in Total">
+                    <td colspan="2">Weight with Yield Factor</td>
+                    <td>{{(item.total_weight) * (selectedYF) | number: 2}} {{item.unit}}</td>
+                    <td ng-repeat="col in collCollection">
+                        {{(item[col.nutrition_name]) * (selectedYF) | number:2}} {{item[col.nutrition_name+'_unit']}}
+                    </td>
+                </tr>
+                @*<tr ng-repeat=" item in Total">
+                        <td colspan="2">Weight</td>
+                        <td>100 {{item.unit}}</td>
+                        <td ng-repeat="col in collCollection">
+                            {{((item[col.nutrition_name]) / (item.total_weight))}} {{item[col.nutrition_name+'_unit']}}
+                        </td>
+                    </tr>*@
+                @*<tr>
+                        <td colspan="{{span}}" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="" st-template="~/Scripts/Areas/pagination.custom.html"></div>
+                        </td>
+                    </tr>*@
+            </tfoot>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div google-chart chart="chart"
+                 style="border:1px inset black;padding:0;width:100%">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div google-chart chart="colchart"
+                 style="border:1px inset black;padding:0;width:100%">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<script type="text/ng-template" id="customTemplate.html">
+    <a>
+        <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+        <i>{{match.model.capital}}</i>
+    </a>
+</script>*@

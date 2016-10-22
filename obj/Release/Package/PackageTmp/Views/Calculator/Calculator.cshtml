@@ -1,0 +1,273 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+#myChart {
+  height:100%;
+  width:100%;
+}
+</style>
+<div class="row" ng-controller="CalculatorController" ng-init="LoadAllDropDown()">
+    <div class="col-md-5" style="margin-top: 10px;">
+        @*<h1>&nbsp;</h1>*@
+        <form class="form-horizontal" ng-submit="" name="yieldFactorForm" ng-init="">
+            <div class="form-group" style="margin-left:0px; margin-right:0px">
+
+                <div class="col-md-12">
+                    <br />
+                    <br />
+                    <div class="list-group" style="border:1px solid #169b62; color:#169b62; font-size:14px">
+                        <div class="panel-heading list-group-item " style="background-color:#169b62; color:#fff; text-align:center; font-size:14px">
+                            Recipe Guide
+                        </div>
+                        <ul style="margin-left:10px">
+                            <i class="fa fa-hand-o-right" style="margin-top:5px" aria-hidden="true">&nbsp;প্রথমে রেসেপির নাম দিন । এটি ঐচ্ছিক । (First insert a name for your recipe. It is optional).</i>
+                        </ul>
+                        <ul style="margin-left:10px">
+                            @*<i class="fa fa-envira" aria-hidden="true">*@
+                            <i class="fa fa-hand-o-right" style="margin-top:5px; line-height:1.2" aria-hidden="true">&nbsp;এবার ঘরগুলোতে উপাদানগুলোর নামের প্রথম অক্ষর লিখলেই স্বয়ংক্রিয়ভাবে উপাদানের তালিকা উঠে আসবে । আপনার পছন্দের উপাদানের নাম একে একে নির্বাচন করুন । (Select cooking ingredients. You can select your desired ingredient by inserting 1st letter of the ingredient name from a list given).</i>
+                        </ul>
+                        <ul style="margin-left:10px">
+                            <i class="fa fa-hand-o-right" style="margin-top:5px; line-height:1.2" aria-hidden="true">&nbsp;তারপর পাশের ঘরগুলোতে উপাদানের পরিমাণ লিখুন । এককের ঘরের তালিকা থেকে পরিমাণের একক ঠিক করুন । (Now insert individual ingredient's weight and unit to the side boxes).</i>
+                        </ul>
+                        <ul style="margin-left:10px">
+                            <i class="fa fa-hand-o-right" style="margin-top:5px; line-height:1.2" aria-hidden="true">&nbsp;উপাদানের সংখ্যা বাড়াতে হলে নীচের ‘Add Ingredient' বোতামে ক্লিক করুন । (If you want to add more ingredient please click ‘Add Ingredient’ button).</i>
+                        </ul>
+                        <ul style="margin-left:10px">
+                            <i class="fa fa-hand-o-right" style="margin-top:5px;  line-height:1.2" aria-hidden="true">&nbsp;এবার ‘কুকিং ইল্ড ফ্যাক্টর (YF)’ যোগ করুন। YF না জানা থাকলে আপনার রেসিপিটির নামের ইংরেজি আদ্যাক্ষর লিখলেই একটি তালিকা আসবে যেখান থেকে রেসিপিটির অথবা নাম না থাকলে কাছাকাছি ফুড বা রেসিপির YF নির্বাচন করুন । (Now insert ‘Cooking Yield Factor, YF’. If you do not know YF of your own, you can choose an YF of a similar food or recipe from the given list by inserting the 1st letter of your recipe name into the checkbox). </i>
+                        </ul>
+                        <ul style="margin-left:10px">
+                            <i class="fa fa-hand-o-right" style="margin-top:5px;  line-height:1.2" aria-hidden="true">&nbsp;সবশেষে ‘Show Result’ বোতাম ক্লিক করলে আপনার রেসেপির পুষ্টিমাণ পপ আপ আকারে চলে আসবে । এটি প্রিন্ট বা সেইভ করে রাখুন । (At the end click ‘Show Result’ button to view the nutritional value of your recipe in a popup. You can print or save it).</i>
+                        </ul>
+                        @*<ul style="margin-left:10px">
+                                <i class="fa fa-hand-o-right" aria-hidden="true">&nbsp;You can insert your own cooking yield or select same kind of food's yield factor.</i>
+                            </ul>
+                            <ul style="margin-left:10px">
+                                <i class="fa fa-hand-o-right" aria-hidden="true">&nbsp;If you want to select same kind food's cooking yield factor please click the checkbox.</i>
+                            </ul>
+                            <ul style="margin-left:10px">
+                                <i class="fa fa-hand-o-right" aria-hidden="true">&nbsp;After clicking the checkbox now you can select different food's cooking yield factor. Here you can also search different food by inserting the name.</i>
+                            </ul>
+                            <ul style="margin-left:10px">
+                                <i class="fa fa-hand-o-right" aria-hidden="true">&nbsp;Now you can see your Recipe Nutrition Facts by Clicking the show result button.</i>
+                            </ul>*@
+                    </div>
+                </div>
+
+                @*<div style="margin-top:110px; margin-left:60px ">
+                        <span class="label label-warning" style="font-family:' Georgia'; font-size:18px">Please select or enter Yield factor to see Weight with yield factor</span>
+                    </div>*@
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-7" style="margin-top: 10px;">
+       <br />
+        <br />
+        <form class="form-horizontal" ng-submit="" name="calculateRecipeForm" ng-init="">
+            <div class="form-group" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-2"><strong>Recipe name</strong></label>
+                <div class="col-md-10">
+                   
+                    <input type="text" class="input-sm col-md-11" data-ng-model="recipe_name" placeholder="Enter Recipe name" name="RecipeName" ng-change="invoke()">
+                    @*<span class="badge badge-notify">1</span>*@
+                    @*This is for Dropdown with custom search*@
+                    @*<ui-select ng-model="calculate.standard_recipe_id" title="Choose Ingredient" ng-change="GetStandardRecipeById(calculate.standard_recipe_id)" append-to-body="true" required>
+                        <ui-select-match placeholder="Select standard recipe"> {{$select.selected.standard_recipe_name}} </ui-select-match>
+                        <ui-select-choices repeat="stdrecipe.standard_recipe_id as stdrecipe in StdRecipeList | filter:{ standard_recipe_name: $select.search }">
+                            <span ng-bind-html="stdrecipe.standard_recipe_name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                        
+                       End of Dropdown *@
+                </div>              
+            </div>
+            <div class="form-group" data-ng-repeat="choice in choices" style="margin-left:0px; margin-right:0px">
+                <label class="col-md-2"><strong>{{choice.Choice_id}} Ingredient</strong></label>
+                <div class="col-md-4" >
+                    <ui-select ng-model="choice.ingredient_id" title="Choose Ingredient" ng-change="isUsed($index)" append-to-body="true" style="margin-right:-60px;">
+                        <ui-select-match placeholder="Select ingredient"> {{$select.selected.ingredient_name}} </ui-select-match>
+                        <ui-select-choices repeat="ingredient.ingredient_id as ingredient in IngredientList | filter:{ ingredient_name: $select.search } | orderBy: 'ingredient_name.length'">
+                            <span style="height:30px;" ng-bind-html="ingredient.ingredient_name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    @*<span style="margin-left: 274px;" class="badge badge-notify">2</span>*@
+                </div>
+                <div class="col-md-2" style="margin-left:-22px">
+                    @*<input type="text" class="input-sm btnde" data-ng-model="choice.weights" placeholder="Enter Weight..." name="wdight" ng-change="loadIngredients()" required />*@
+                    <input type="text" class="input-sm btnde ng-pristine ng-invalid ng-invalid-required ng-touched" data-ng-model="choice.weights" placeholder="Enter Weight..." name="wdight" ng-blur="invoke()" required style="height: 34px; width:129px; margin-left:58px;">
+                    @*<span  style="margin-left: 183px;"class="badge badge-notify">3</span>*@
+                </div>
+                <div class="col-md-3" style="margin-left:28px">
+                    <select data-ng-model="choice.unit" class="dropdown form-control input-sm"
+                            ng-options="unit.unit_name as unit.unit_name for unit in UnitList" ng-change="invoke()" required style="height: 34px; width:110px; margin-left:42px;">
+                        <option value="">----Select----</option>
+                    </select>
+                    @*<span style="margin-left: 150px;" class="badge badge-notify">4</span>*@
+                </div>
+
+                <div class="col-md-1">
+                    <input type="button" id="remove" class="btn btn-danger" @*class="btn btn-danger"*@ style="margin-left:-25px;" @*ng-show="$last"*@ value="Del" data-ng-click="removeChoice($index)" />
+                    @*<span style="margin-left: 30px;" class="badge badge-notify">5</span>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-9">                   
+                    <div ng-show="standardRecipe.yield_factor_checked">
+                        @*<div class="col-md-3">*@
+                        <label class="col-md-3"><strong>Yield Factor</strong></label>
+                        @*</div>*@
+                        <div class="col-md-4">
+                            <ui-select ng-model="standardRecipe.yf" @*ng-if="standardRecipe.yield_factor_checked == true"*@ title="Select yield factor" ng-change="isUsed($index)" append-to-body="true" style="margin-right:-111px; margin-left:-14px">
+                                <ui-select-match placeholder="Select yield factor"> {{$select.selected.Ingredient_name}} </ui-select-match>
+                                <ui-select-choices repeat="yieldfactor.Yield_factor as yieldfactor in YieldfactorList | filter:{ Ingredient_name: $select.search }">
+                                    <span ng-bind-html="yieldfactor.Ingredient_name | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div ng-hide="standardRecipe.yield_factor_checked">
+                        <label class="col-md-3"><strong>Yield Factor</strong></label>
+                        <input type="text" class="input-sm col-md-6" ng-model="standardRecipe.yf" ng-change="isUsed($index)" placeholder="Enter yield factor" @*ng-if="standardRecipe.yield_factor_checked == false"*@ required />
+                        @*<span class="badge badge-notify">7</span>*@
+                    </div>
+                    <div class="col-md-1" style="margin-left:122px">
+                        <input type="checkbox" name="ownYieldFactor" value="Yield Factor" ng-checked="checked" style="margin-left : 7px" data-ng-model="standardRecipe.yield_factor_checked" />
+                    </div>      
+                    <div class="col-md-6">
+                        <label for="Yield Factor">Do you want to select yield factor..?</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    @*<input type="button" class="btn btn-primary" style="margin-left:-24px;" value="Show Result" ng-click="GenerateReportRDLC()" />*@
+                    <a class="various iframe btn btn-primary" style="margin-left:-24px;" ng-href="../../Calculator/GetReport/?Selectedingredients={{string}}" fancyboxable>Show Result</a>
+                    @*<span style="margin-left: 80px;" class="badge badge-notify">8</span>*@
+                </div>
+                <div class="col-md-1">
+                    <input type="button" class="btn btn-primary" style="margin-left:-35px;" value="Add" data-ng-click="addNewChoice()" />
+                    @*<span style="margin-left: 28px;" class="badge badge-notify">6</span>*@
+                </div>
+            </div>
+           
+        </form>
+        @*</div>*@
+    </div>
+    
+
+    @*<div class="col-md-12" style="overflow-x:scroll">
+    <h1>Standard Recipe</h1>*@
+        @*<div class="row">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Item per page</label>
+                <div class="col-md-2">
+                    <input type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" />
+                </div>
+            </div>
+        </div>*@
+
+        @*Smart table for display Calculation data Completed*@
+
+        @*<table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+            <thead style="background-color:#545c65 !important">
+                <tr style="color:white;">
+                    <th st-sort="ingredient_name">Ingredient Name</th>
+                    <th st-sort="preparation_type">Preparation Type</th>
+                    <th st-sort="weight">Weight</th>
+                    <th st-sort="{{col.nutrition_name}}" ng-repeat="col in collCollection">{{col.nutrition_name+' ('+col.unit+')'}}</th>
+                </tr>
+                <tr>
+                    <th colspan="{{span}}"><input st-search="" class="form-control input-sm" placeholder="global search ..." type="text" style="width : 200px" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.ingredient_name}}  </td>
+                    <td>{{row.preparation_type}}  </td>
+                    <td>{{row.weight+' ('+row.unit+')'}}  </td>
+                    <td ng-repeat="col in collCollection">
+                        {{row[col.nutrition_name]}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr ng-repeat=" item in Total">
+                    <td colspan="2">Total Weight</td>
+                    <td>{{item.total_weight}} {{item.unit}}</td>
+                    <td ng-repeat="col in collCollection">
+                        {{item[col.nutrition_name]}} {{item[col.nutrition_name+'_unit']}}
+                    </td>
+                </tr>
+
+                <tr ng-repeat=" item in Total">
+                    <td colspan="2">Weight with Yield Factor</td>
+                    <td>{{(item.total_weight) * (selectedYF) | number: 2}} {{item.unit}}</td>
+                    <td ng-repeat="col in collCollection">
+                        {{(item[col.nutrition_name]) * (selectedYF) | number:2}} {{item[col.nutrition_name+'_unit']}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+    </div>*@
+    @*Chart*@
+    @*<div class="col-md-12">
+        <br />
+        <br />
+       Pie Chart
+        <div class="col-md-12">
+            <div google-chart chart="chart"
+                 style="border:1px inset black;padding:0;width:100%">
+            </div>
+        </div>
+        Column Chart
+        <div class="col-md-12">
+            <div google-chart chart="colchart"
+                 style="border:1px inset black;padding:0;width:100%">
+            </div>
+        </div>
+    </div>*@
+
+</div>
+
+@*@section scripts{
+    <script type="text/javascript">
+        function GenerateReportRDLC(fileType) {
+            //var d = new Date();
+            //var x = document.querySelector('input[name="ReportOptionPF"]:checked').value;
+            //var fromDate = $('#txtFromDate').val();
+            //var toDate = $('#txtToDate').val();
+            //var empID = $('#SelectedEmpID').val();
+
+            //if (Date.parse(fromDate) > Date.parse(toDate)) {
+            //    ShowModalMessage("To Date must be Greater than From Date");
+            //    return false;
+            //}
+
+            //if ((fromDate == "" || toDate == "")) {
+            //    ShowModalMessage("Pl's Fill To Date & From Date");
+            //    return false;
+            //}
+
+            //if (x == "PFMemberContribution" && $("#txtEmpID") == "") {
+            //    ShowModalMessage("Pl's Fill The Employee Id");
+            //    return false;
+            //}
+
+            var viewURL = '../../Report/ReportPF/Report/?id=' + fileType + '&reportOptions=' + x + "&empID=" + empID + "&fromDate=" + fromDate + "&toDate=" + toDate;
+            //window.location = viewURL;
+            //window.open(viewURL, 'window name', 'window settings');
+            FancyBox(viewURL);
+            return false;
+        }
+    </script>
+}*@  
+
+@*<script type="text/ng-template" id="customTemplate.html">
+    <a>
+        <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+        <i>{{match.model.capital}}</i>
+    </a>
+</script>*@

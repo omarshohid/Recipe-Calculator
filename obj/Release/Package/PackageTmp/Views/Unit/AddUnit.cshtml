@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row" ng-controller="UnitController">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <h1>Add New Unit</h1>
+            @*<hr />*@
+            <br />
+            <form class="form-horizontal" ng-submit="" name="newUnitForm" ng-init="LoadUnits()">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label for="Name">Unit Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control input-sm" data-ng-model="unit.unit_name" name="nutrition_name" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" class="btn btn-default" value="Save" data-ng-click="SaveNewUnit()" />
+                        <input type="button" class="btn btn-default" value="Reset" data-ng-click="Reset()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h1>Unit List</h1>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Item per page</label>
+                    <div class="col-md-2">
+                        <input type="text" min="1" class="form-control input-sm" ng-model="itemsByPage" numbers-only style="width : 150px" />
+                    </div>
+                </div>
+            </div>
+            <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" style=" color: white;">
+                <thead style="background-color:#545c65 !important">
+                    <tr>
+                        <th st-sort="nutrition_name">Unti Name</th>                     
+                        <th>Edit</th>
+                        @*<th>Delete</th>*@
+                    </tr>
+                    <tr>
+                        <th colspan="2"><input st-search="" class="form-control input-sm" placeholder="global search ..." type="text" style="width : 200px" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in displayedCollection">
+                        <td>{{row.unit_name}}</td>                       
+                        <td><a href="/#EditUnit/{{row.unit_id}}" class="btn btn-link">&#@RecipeCalculator.Utility.Constant.Edit;</a></td>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="" st-template="~/Scripts/Areas/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
